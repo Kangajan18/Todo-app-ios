@@ -12,7 +12,7 @@ class ViewController: UIViewController{
     @IBOutlet weak var taskTextField: UITextField!
     @IBOutlet weak var taskTableView: UITableView!
     @IBOutlet weak var datePicker: UIDatePicker!
-    
+    @IBOutlet weak var addButton: UIButton!
     
     //get TaskBrain referance
     let dateFormatter = DateFormatter()
@@ -44,9 +44,7 @@ class ViewController: UIViewController{
         
     }
     
-    
-    
-    @IBAction func addButtonPressed(_ sender: UIButton) {
+    @IBAction func addButtonPressed(_ sender: AnyObject?) {
         textFieldDidEndEditing(taskTextField)
         
         if currentTask != nil && date != nil{
@@ -107,6 +105,14 @@ extension ViewController:UITextFieldDelegate{
             _ = textFieldShouldEndEditing(textField)
         }
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.addButtonPressed(nil)
+        textField.resignFirstResponder()
+        return true
+    }
+    
+   
 }
 
 //MARK: - UITableviwDataSource
@@ -235,18 +241,7 @@ extension ViewController{
                 vc.taskId = indexPath.row//change
                 vc.taskTitle = TaskBrain.tasks[indexPath.row].task
                 vc.isDone = TaskBrain.tasks[indexPath.row].isDone
-                
-                vc.modalPresentationStyle = .pageSheet
-                if
-                    #available(iOS 15.0, *),
-                    let sheet = vc.sheetPresentationController
-                {
-                    sheet.detents = [.medium(),.large()]
-                    present(vc, animated: true)
-                }else{
-                    show(vc, sender: true)
-                }
-                
+                self.show(vc, sender: self)
             }
         }
     }

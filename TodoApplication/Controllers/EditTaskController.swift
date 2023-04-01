@@ -7,7 +7,7 @@
 
 import UIKit
 
-class EditTaskController: UIViewController {
+class EditTaskController: UIViewController , UITextFieldDelegate {
     
     @IBOutlet weak var updateTextField: UITextField!
     
@@ -24,6 +24,7 @@ class EditTaskController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        updateTextField.delegate = self
         
         let selectedTask = TaskBrain.getTaskById(taskId: taskId!)
                                 
@@ -31,9 +32,8 @@ class EditTaskController: UIViewController {
             date = selectedTask?.dateTime
             taskTitle = selectedTask?.task
         }
-        
+        updateTextField.becomeFirstResponder()
         DispatchQueue.main.async { [self] in
-            updateTextField.becomeFirstResponder()
             updateTextField.text = taskTitle
             isDownSegmentedControl.selectedSegmentIndex = isDone == true ? 0 : 1
             isDownSegmentedControl.selectedSegmentTintColor = isDone == true ? .systemGreen : UIColor(named: "screen1SecondaryColor")
@@ -41,7 +41,7 @@ class EditTaskController: UIViewController {
        
         
     }
-    
+
     
     @IBAction func datePickerSelected(_ sender: UIDatePicker) {
         date = sender.date
@@ -57,10 +57,7 @@ class EditTaskController: UIViewController {
     
     @IBAction func updateTaskButtonPressed(_ sender: UIButton) {
         TaskBrain.updateTask(taskId: taskId!, taskTitle: updateTextField.text!, taskDate: date!, isDone: isDone!)
-        
-        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc : ViewController = storyboard.instantiateViewController(withIdentifier: "screenEnterTodo") as! ViewController
-        self.show(vc, sender: self)
+        navigationController?.popToRootViewController(animated: true)
     }
     
 }
