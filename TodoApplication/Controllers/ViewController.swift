@@ -242,8 +242,7 @@ extension ViewController{
                     let sheet = vc.sheetPresentationController
                 {
                     sheet.detents = [.medium(),.large()]
-                    
-                    show(vc, sender: true)
+                    present(vc, animated: true)
                 }else{
                     show(vc, sender: true)
                 }
