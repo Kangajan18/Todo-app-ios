@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="i0t-vv-gzy">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController storyboardIdentifier="screenEnterTodo" id="BYZ-38-t0r" customClass="ViewController" customModule="TodoApplication" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="aPO-xK-E2I">
+                                <rect key="frame" x="7.5" y="113" width="360" height="541"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="WKV-OR-waJ">
+                                        <rect key="frame" x="0.0" y="0.0" width="360" height="306"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="u8H-xd-d6y">
+                                                <rect key="frame" x="0.0" y="0.0" width="360" height="50"/>
+                                                <subviews>
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="8yM-lG-FF0">
+                                                        <rect key="frame" x="30" y="0.0" width="300" height="50"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="8NC-LX-bP0"/>
+                                                            <constraint firstAttribute="width" constant="300" id="r4J-l1-2bE"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                </subviews>
+                                            </stackView>
+                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="ArE-he-wHF">
+                                                <rect key="frame" x="0.0" y="100" width="360" height="100"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="100" id="8Va-dh-AQy"/>
+                                                </constraints>
+                                                <connections>
+                                                    <action selector="datepickerValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="IE5-t6-m6a"/>
+                                                </connections>
+                                            </datePicker>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ykC-FS-OQa">
+                                                <rect key="frame" x="0.0" y="250" width="360" height="56"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="27i-XJ-Ljg">
+                                                        <rect key="frame" x="15" y="0.0" width="330" height="56"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="330" id="8yi-NO-ntm"/>
+                                                            <constraint firstAttribute="height" constant="56" id="APQ-2V-DCM"/>
+                                                        </constraints>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="filled" image="plus" catalog="system" imagePlacement="trailing" title="ADD" titleAlignment="automatic">
+                                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="baseBackgroundColor" name="screen1SecondaryColor"/>
+                                                        </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="addButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yd9-o8-xt0"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="cMr-kM-RJb">
+                                        <rect key="frame" x="0.0" y="316" width="360" height="225"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DTF-OS-GQN">
+                                                <rect key="frame" x="0.0" y="0.0" width="54" height="24"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Sort" image="arrow.up.arrow.down.square" catalog="system"/>
+                                                <connections>
+                                                    <action selector="sortButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="av8-vJ-PqP"/>
+                                                </connections>
+                                            </button>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="MV5-m8-AhM">
+                                                <rect key="frame" x="0.0" y="25" width="360" height="200"/>
+                                                <subviews>
+                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="MOe-CG-ySk">
+                                                        <rect key="frame" x="0.0" y="0.0" width="360" height="200"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="200" id="IJD-Oz-jHu"/>
+                                                            <constraint firstAttribute="width" constant="360" id="q48-oQ-37v"/>
+                                                        </constraints>
+                                                        <color key="sectionIndexColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </tableView>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="aPO-xK-E2I" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="0Jx-E0-GDz"/>
+                            <constraint firstItem="aPO-xK-E2I" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="50" id="c2t-PJ-KMk"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="P9h-Xf-XPB"/>
+                    <connections>
+                        <outlet property="datePicker" destination="ArE-he-wHF" id="jNM-HC-hfS"/>
+                        <outlet property="taskTableView" destination="MOe-CG-ySk" id="upi-Fj-U3X"/>
+                        <outlet property="taskTextField" destination="8yM-lG-FF0" id="E5C-bv-Iex"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3228.985507246377" y="6.5217391304347831"/>
+        </scene>
+        <!--Edit Task Controller-->
+        <scene sceneID="rTy-Vq-Kqv">
+            <objects>
+                <viewController storyboardIdentifier="EditScreen" id="e3e-w0-bY1" customClass="EditTaskController" customModule="TodoApplication" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Tuc-a1-5zp">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="ohT-kc-FyL">
+                                <rect key="frame" x="4.5" y="226" width="366" height="215"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="here Update your task" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uwr-fT-G90">
+                                        <rect key="frame" x="0.0" y="0.0" width="366" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="gIr-mx-NPk">
+                                        <rect key="frame" x="0.0" y="84" width="366" height="35"/>
+                                        <subviews>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="uzP-NA-MCM">
+                                                <rect key="frame" x="0.0" y="0.0" width="139" height="36"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="131" id="7zr-Rv-TpR"/>
+                                                    <constraint firstAttribute="height" constant="35" id="Y19-CJ-9YP"/>
+                                                </constraints>
+                                                <segments>
+                                                    <segment title="Done"/>
+                                                    <segment title="Pending"/>
+                                                </segments>
+                                                <color key="selectedSegmentTintColor" name="screen1SecondaryColor"/>
+                                                <connections>
+                                                    <action selector="selectSegment:" destination="e3e-w0-bY1" eventType="valueChanged" id="mmB-8i-LiA"/>
+                                                </connections>
+                                            </segmentedControl>
+                                            <view alpha="0.45000000000000001" contentMode="scaleToFill" verticalHuggingPriority="236" translatesAutoresizingMaskIntoConstraints="NO" id="E4j-Lz-gwC">
+                                                <rect key="frame" x="142" y="5" width="1" height="25"/>
+                                                <color key="backgroundColor" systemColor="labelColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="1" id="DH3-pP-f0g"/>
+                                                    <constraint firstAttribute="height" constant="25" id="fFO-Jq-Ucb"/>
+                                                </constraints>
+                                            </view>
+                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="POg-QM-5Et">
+                                                <rect key="frame" x="146" y="0.0" width="220" height="35"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="35" id="1er-kp-ZUg"/>
+                                                    <constraint firstAttribute="width" constant="220" id="EGF-pt-rE9"/>
+                                                </constraints>
+                                                <connections>
+                                                    <action selector="datePickerSelected:" destination="e3e-w0-bY1" eventType="valueChanged" id="QVn-at-bFj"/>
+                                                </connections>
+                                            </datePicker>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0NV-Y4-XGF">
+                                        <rect key="frame" x="0.0" y="169" width="366" height="46"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="46" id="PdC-fC-aq9"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="152" id="rXY-ZN-es7"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Update">
+                                            <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="baseBackgroundColor" red="0.39587489269999998" green="1" blue="0.65156283839999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="updateTaskButtonPressed:" destination="e3e-w0-bY1" eventType="touchUpInside" id="7VT-Nu-mkJ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="2qw-t2-QcW"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ohT-kc-FyL" firstAttribute="centerY" secondItem="Tuc-a1-5zp" secondAttribute="centerY" id="Uis-Mn-jqH"/>
+                            <constraint firstItem="ohT-kc-FyL" firstAttribute="centerX" secondItem="Tuc-a1-5zp" secondAttribute="centerX" id="mGp-Ja-7Tm"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="datePicker" destination="POg-QM-5Et" id="Sah-5i-1Hv"/>
+                        <outlet property="isDownSegmentedControl" destination="uzP-NA-MCM" id="431-YX-sjY"/>
+                        <outlet property="updateTextField" destination="uwr-fT-G90" id="ObX-dX-ALw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MIm-16-iEm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4140" y="5.8470764617691158"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="mOy-E5-ii7">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="i0t-vv-gzy" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hHb-3R-Nyj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Ad3-hE-aOW"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="86g-Y7-Zs0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2321.739130434783" y="6.5217391304347831"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="arrow.up.arrow.down.square" catalog="system" width="128" height="114"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
+        <namedColor name="screen1SecondaryColor">
+            <color red="0.70200002193450928" green="0.0" blue="0.36899998784065247" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
