@@ -57,7 +57,9 @@ class EditTaskController: UIViewController , UITextFieldDelegate {
     
     @IBAction func updateTaskButtonPressed(_ sender: UIButton) {
         TaskBrain.updateTask(taskId: taskId!, taskTitle: updateTextField.text!, taskDate: date!, isDone: isDone!)
-        navigationController?.popToRootViewController(animated: true)
+        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let vc : ViewController = storyboard.instantiateViewController(withIdentifier: "screenEnterTodo") as! ViewController
+                self.show(vc, sender: self)
     }
     
 }
