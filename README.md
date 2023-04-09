@@ -1,7 +1,7 @@
 # Todo-app-ios
 todo application in iOS
 
-Todo application with AI powerd.created by Kangajan Kuganathan.
+##Todo application with AI powerd.created by <a href="https://github.com/Kangajan18?tab=achievements">Kangajan Kuganathan</a>.
 
 Features are used 
   Swift gestures,
