@@ -10,26 +10,24 @@ import Foundation
 
 struct TaskBrain{
 
-    static var tasks:[TaskModel] = []
-
+    var viewController = ViewController()
+    
     func addTask(task:TaskModel?){
-        if task != nil{
-            TaskBrain.tasks.append(task!)
-            print("TAsk added")
-            print("Task = \(TaskBrain.tasks.count)")
+        if let currentTask = task, task != nil{
+            viewController.taskArray.append(currentTask)
         }else{
             print("Error task not added")
         }
     }
 
-    static func updateTaskId(){
-        for i in 0...TaskBrain.tasks.count - 1 {
-            TaskBrain.tasks[i].taskId = i
+    func updateTaskId(){
+        for i in 0...viewController.taskArray.count - 1 {
+            viewController.taskArray[i].taskId = i
         }
     }
 
-    static func getTaskById(taskId:Int)->TaskModel?{
-        for task in TaskBrain.tasks{
+    func getTaskById(taskId:Int)->TaskModel?{
+        for task in viewController.taskArray{
             if task.taskId == taskId{
                 return task
             }
@@ -37,16 +35,14 @@ struct TaskBrain{
         return nil
     }
 
-    static func updateTask(taskId:Int,taskTitle:String,taskDate:Date,isDone:Bool){
-        updateTaskId()
+    func updateTask(taskId:Int,taskTitle:String,taskDate:Date,isDone:Bool){
         print("TaskId = \(taskId) \(taskTitle)")
-
-        TaskBrain.tasks[taskId].task = taskTitle
-        TaskBrain.tasks[taskId].dateTime = taskDate
-        TaskBrain.tasks[taskId].isDone = isDone
+        viewController.taskArray[taskId].task = taskTitle
+        viewController.taskArray[taskId].dateTime = taskDate
+        viewController.taskArray[taskId].isDone = isDone
     }
 
-    static func updateTaskIsDone(taskId:Int,isDone:Bool){
-        TaskBrain.tasks[taskId].isDone = isDone
+    func updateTaskIsDone(taskId:Int,isDone:Bool){
+        viewController.taskArray[taskId].isDone = isDone
     }
 }
