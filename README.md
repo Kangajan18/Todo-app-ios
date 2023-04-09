@@ -17,7 +17,4 @@
  
   
 <h1>Explanation Video of this Todo Application</h1>
-https://user-images.githubusercontent.com/97095835/230764649-011ee4cf-b3fb-4745-9592-6505a032147b.mov
-
-
-
+![ezgif com-video-to-gif](https://user-images.githubusercontent.com/97095835/230765951-d3eee642-ebf2-4ee8-b97c-fc97b4014252.gif)
