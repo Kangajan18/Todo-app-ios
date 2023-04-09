@@ -4,8 +4,8 @@ todo application in iOS
 Todo application with AI powerd.created by Kangajan Kuganathan.
 
 Features are used 
-  Swift gestures
-  Ai tecnology for task icon selection
+  Swift gestures,
+  Ai tecnology for task icon selection,
   used Local Storage to store tasks.
 
 
