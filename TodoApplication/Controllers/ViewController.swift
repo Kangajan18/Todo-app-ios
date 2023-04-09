@@ -21,7 +21,8 @@ class ViewController: UIViewController{
     var isSort = false
     var taskArray:[TaskModel] = []
     
-//    var taskBrain = TaskBrain()
+    let defaults = UserDefaults.standard
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +39,11 @@ class ViewController: UIViewController{
         
         navigationItem.hidesBackButton = true
         
+        if let data = UserDefaults.standard.object(forKey: "TodoList") as? Data,
+           let items = try? JSONDecoder().decode([TaskModel].self, from: data) {
+            taskArray = items
+        }
+        
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(ViewController.longPress(longPressGestureRecognizer:)))
         self.view.addGestureRecognizer(longPressRecognizer)
         taskTableView.addGestureRecognizer(longPressRecognizer)
@@ -51,6 +57,9 @@ class ViewController: UIViewController{
             DispatchQueue.main.async {
                 let newTask = TaskModel(taskId: (self.taskArray.count), dateTime: self.date!,task: self.currentTask!, isDone: false)
                 self.taskArray.append(newTask)
+                if let encoded = try? JSONEncoder().encode(self.taskArray) {
+                    self.defaults.set(encoded, forKey: "TodoList")
+                }
                 self.taskTableView.reloadData()
             }
         }
@@ -148,6 +157,9 @@ extension ViewController:UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
             taskArray.remove(at: indexPath.row)
+            if let encoded = try? JSONEncoder().encode(self.taskArray) {
+                self.defaults.set(encoded, forKey: "TodoList")
+            }
             tableView.reloadData()
         }
     }
@@ -167,7 +179,7 @@ extension ViewController:UITableViewDataSource {
         let movedObject = taskArray[sourceIndexPath.row]
         taskArray.remove(at: sourceIndexPath.row)
         taskArray.insert(movedObject, at: destinationIndexPath.row)
-        //taskBrain.updateTaskId()
+        
     }
 }
 
@@ -214,10 +226,10 @@ extension ViewController{
 extension ViewController:UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Single touch working")
-        print(taskArray[indexPath.row].isDone)
         taskArray[indexPath.row].isDone = !taskArray[indexPath.row].isDone
-        print(taskArray[indexPath.row].isDone)
+        if let encoded = try? JSONEncoder().encode(self.taskArray) {
+            self.defaults.set(encoded, forKey: "TodoList")
+        }
         taskTableView.reloadData()
     }
 }

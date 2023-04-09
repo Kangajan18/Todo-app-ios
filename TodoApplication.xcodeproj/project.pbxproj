@@ -17,7 +17,6 @@
 		5A68A6A029C317E0005682DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A68A69E29C317E0005682DD /* LaunchScreen.storyboard */; };
 		5AAB04EC29C74B8E007F2B60 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB04EB29C74B8E007F2B60 /* Constants.swift */; };
 		5AD5B1D929C35BF600AC706C /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD5B1D829C35BF600AC706C /* TaskModel.swift */; };
-		5AD5B1DC29C3680300AC706C /* TaskBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD5B1DB29C3680300AC706C /* TaskBrain.swift */; };
 		5AE3227A29C9F4FB00676707 /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE3227829C9F4FB00676707 /* TaskCell.swift */; };
 		5AE3227B29C9F4FB00676707 /* TaskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AE3227929C9F4FB00676707 /* TaskCell.xib */; };
 /* End PBXBuildFile section */
@@ -34,7 +33,6 @@
 		5A68A6A129C317E0005682DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5AAB04EB29C74B8E007F2B60 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5AD5B1D829C35BF600AC706C /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
-		5AD5B1DB29C3680300AC706C /* TaskBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskBrain.swift; sourceTree = "<group>"; };
 		5AE3227829C9F4FB00676707 /* TaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
 		5AE3227929C9F4FB00676707 /* TaskCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -88,7 +86,6 @@
 			isa = PBXGroup;
 			children = (
 				5AD5B1D829C35BF600AC706C /* TaskModel.swift */,
-				5AD5B1DB29C3680300AC706C /* TaskBrain.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -193,7 +190,6 @@
 				5A185D5B29C94A160002528C /* TestViewController.swift in Sources */,
 				5A68A69429C317DF005682DD /* AppDelegate.swift in Sources */,
 				5AD5B1D929C35BF600AC706C /* TaskModel.swift in Sources */,
-				5AD5B1DC29C3680300AC706C /* TaskBrain.swift in Sources */,
 				5AAB04EC29C74B8E007F2B60 /* Constants.swift in Sources */,
 				5AE3227A29C9F4FB00676707 /* TaskCell.swift in Sources */,
 				5A68A69629C317DF005682DD /* SceneDelegate.swift in Sources */,
