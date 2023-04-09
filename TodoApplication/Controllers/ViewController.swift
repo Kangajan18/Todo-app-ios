@@ -12,16 +12,16 @@ class ViewController: UIViewController{
     @IBOutlet weak var taskTextField: UITextField!
     @IBOutlet weak var taskTableView: UITableView!
     @IBOutlet weak var datePicker: UIDatePicker!
-    
+    @IBOutlet weak var addButton: UIButton!
     
     //get TaskBrain referance
     let dateFormatter = DateFormatter()
     var date:Date?
     var currentTask:String?
     var isSort = false
+    var taskArray:[TaskModel] = []
     
-    var taskBrain = TaskBrain()
-    
+//    var taskBrain = TaskBrain()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,19 +44,13 @@ class ViewController: UIViewController{
         
     }
     
-    
-    
-    @IBAction func addButtonPressed(_ sender: UIButton) {
+    @IBAction func addButtonPressed(_ sender: AnyObject?) {
         textFieldDidEndEditing(taskTextField)
         
         if currentTask != nil && date != nil{
             DispatchQueue.main.async {
-                let newTask = TaskModel(taskId: (TaskBrain.tasks.count), dateTime: self.date!,task: self.currentTask!, isDone: false)
-                
-                self.taskBrain.addTask(task: newTask)
-                
-                
-                
+                let newTask = TaskModel(taskId: (self.taskArray.count), dateTime: self.date!,task: self.currentTask!, isDone: false)
+                self.taskArray.append(newTask)
                 self.taskTableView.reloadData()
             }
         }
@@ -107,6 +101,13 @@ extension ViewController:UITextFieldDelegate{
             _ = textFieldShouldEndEditing(textField)
         }
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.addButtonPressed(nil)
+        return true
+    }
+    
+   
 }
 
 //MARK: - UITableviwDataSource
@@ -115,7 +116,7 @@ extension ViewController:UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return TaskBrain.tasks.count
+        return taskArray.count
     }
     
     
@@ -124,7 +125,7 @@ extension ViewController:UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.reUsableCell, for: indexPath)
         as! TaskCell
         
-        let task = TaskBrain.tasks[indexPath.row]
+        let task = taskArray[indexPath.row]
         cell.taskLabel.text = task.task
         cell.dateLabel.text = getFormattedDate(date: task.dateTime, format: "MMM d, h:mm a")
         cell.taskImage.image = UIImage(imageLiteralResourceName: getApopriateIcon(task: task.task))
@@ -146,7 +147,7 @@ extension ViewController:UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
-            TaskBrain.tasks.remove(at: indexPath.row)
+            taskArray.remove(at: indexPath.row)
             tableView.reloadData()
         }
     }
@@ -163,11 +164,10 @@ extension ViewController:UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let movedObject = TaskBrain.tasks[sourceIndexPath.row]
-        TaskBrain.tasks.remove(at: sourceIndexPath.row)
-        TaskBrain.tasks.insert(movedObject, at: destinationIndexPath.row)
-        TaskBrain.updateTaskId()
-        print("updated task list = \(TaskBrain.tasks)")
+        let movedObject = taskArray[sourceIndexPath.row]
+        taskArray.remove(at: sourceIndexPath.row)
+        taskArray.insert(movedObject, at: destinationIndexPath.row)
+        //taskBrain.updateTaskId()
     }
 }
 
@@ -211,42 +211,46 @@ extension ViewController{
 }
 
 //MARK: - UITableViewDelegate
-
 extension ViewController:UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        TaskBrain.tasks[indexPath.row].isDone = !TaskBrain.tasks[indexPath.row].isDone
+        print("Single touch working")
+        print(taskArray[indexPath.row].isDone)
+        taskArray[indexPath.row].isDone = !taskArray[indexPath.row].isDone
+        print(taskArray[indexPath.row].isDone)
         taskTableView.reloadData()
     }
-    
-    
 }
 
 //MARK: - long press gesture
 extension ViewController{
     @objc func longPress(longPressGestureRecognizer: UILongPressGestureRecognizer) {
         
+        var textField = UITextField()
+        
         if longPressGestureRecognizer.state == UIGestureRecognizer.State.began {
             let touchPoint = longPressGestureRecognizer.location(in: taskTableView)
             if let indexPath = taskTableView.indexPathForRow(at: touchPoint) {
                 
-                let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let vc : EditTaskController = storyboard.instantiateViewController(withIdentifier: "EditScreen") as! EditTaskController
-                vc.taskId = indexPath.row//change
-                vc.taskTitle = TaskBrain.tasks[indexPath.row].task
-                vc.isDone = TaskBrain.tasks[indexPath.row].isDone
                 
-                vc.modalPresentationStyle = .pageSheet
-                if
-                    #available(iOS 15.0, *),
-                    let sheet = vc.sheetPresentationController
-                {
-                    sheet.detents = [.medium(),.large()]
-                    present(vc, animated: true)
-                }else{
-                    show(vc, sender: true)
+                let updatePopUp = UIAlertController(title: "Update Task", message: "", preferredStyle: .alert)
+                let updateAction = UIAlertAction(title: "Update", style: .default) { [unowned self] updateAction in
+                    
+                    if let taskItem = textField.text{
+                        taskArray[indexPath.row].task = taskItem
+                        taskTableView.reloadData()
+                    }
                 }
                 
+                updatePopUp.addTextField { updateTextField in
+                    updateTextField.text = self.taskArray[indexPath.row].task
+                    textField = updateTextField
+                    textField.becomeFirstResponder()
+                }
+                updatePopUp.addAction(updateAction)
+                present(updatePopUp, animated: true) {
+                    textField.becomeFirstResponder()
+                }
             }
         }
     }

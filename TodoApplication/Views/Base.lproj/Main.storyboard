@@ -111,6 +111,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="P9h-Xf-XPB"/>
                     <connections>
+                        <outlet property="addButton" destination="27i-XJ-Ljg" id="oSK-am-3KA"/>
                         <outlet property="datePicker" destination="ArE-he-wHF" id="jNM-HC-hfS"/>
                         <outlet property="taskTableView" destination="MOe-CG-ySk" id="upi-Fj-U3X"/>
                         <outlet property="taskTextField" destination="8yM-lG-FF0" id="E5C-bv-Iex"/>
