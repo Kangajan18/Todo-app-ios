@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TaskModel{
+struct TaskModel:Encodable,Decodable{
     var taskId:Int
     var dateTime:Date
     var task:String
