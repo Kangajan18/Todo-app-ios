@@ -16,6 +16,7 @@
 		5A68A69D29C317E0005682DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A68A69C29C317E0005682DD /* Assets.xcassets */; };
 		5A68A6A029C317E0005682DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A68A69E29C317E0005682DD /* LaunchScreen.storyboard */; };
 		5AAB04EC29C74B8E007F2B60 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB04EB29C74B8E007F2B60 /* Constants.swift */; };
+		5AABB7BF29E387F400BDC31D /* TasksEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AABB7BE29E387F400BDC31D /* TasksEnum.swift */; };
 		5AD5B1D929C35BF600AC706C /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD5B1D829C35BF600AC706C /* TaskModel.swift */; };
 		5AE3227A29C9F4FB00676707 /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE3227829C9F4FB00676707 /* TaskCell.swift */; };
 		5AE3227B29C9F4FB00676707 /* TaskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AE3227929C9F4FB00676707 /* TaskCell.xib */; };
@@ -32,6 +33,7 @@
 		5A68A69F29C317E0005682DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5A68A6A129C317E0005682DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5AAB04EB29C74B8E007F2B60 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		5AABB7BE29E387F400BDC31D /* TasksEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksEnum.swift; sourceTree = "<group>"; };
 		5AD5B1D829C35BF600AC706C /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
 		5AE3227829C9F4FB00676707 /* TaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
 		5AE3227929C9F4FB00676707 /* TaskCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskCell.xib; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 				5A68A6A129C317E0005682DD /* Info.plist */,
 				5AAB04EB29C74B8E007F2B60 /* Constants.swift */,
 				5A185D5A29C94A160002528C /* TestViewController.swift */,
+				5AABB7BE29E387F400BDC31D /* TasksEnum.swift */,
 			);
 			path = TodoApplication;
 			sourceTree = "<group>";
@@ -191,6 +194,7 @@
 				5A68A69429C317DF005682DD /* AppDelegate.swift in Sources */,
 				5AD5B1D929C35BF600AC706C /* TaskModel.swift in Sources */,
 				5AAB04EC29C74B8E007F2B60 /* Constants.swift in Sources */,
+				5AABB7BF29E387F400BDC31D /* TasksEnum.swift in Sources */,
 				5AE3227A29C9F4FB00676707 /* TaskCell.swift in Sources */,
 				5A68A69629C317DF005682DD /* SceneDelegate.swift in Sources */,
 			);

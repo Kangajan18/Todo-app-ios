@@ -116,7 +116,7 @@ extension ViewController:UITextFieldDelegate{
         return true
     }
     
-   
+    
 }
 
 //MARK: - UITableviwDataSource
@@ -137,7 +137,7 @@ extension ViewController:UITableViewDataSource {
         let task = taskArray[indexPath.row]
         cell.taskLabel.text = task.task
         cell.dateLabel.text = getFormattedDate(date: task.dateTime, format: "MMM d, h:mm a")
-        cell.taskImage.image = UIImage(imageLiteralResourceName: getApopriateIcon(task: task.task))
+        cell.taskImage.image = UIImage(imageLiteralResourceName: getApopriateIcon(to: task.task))
         cell.taskBubble.backgroundColor = task.isDone == true ? .systemGreen : UIColor(named: "screen1SecondaryColor")
         return cell
     }
@@ -184,40 +184,13 @@ extension ViewController:UITableViewDataSource {
 }
 
 extension ViewController{
-    func getApopriateIcon(task:String)->String{
-        
+    func getApopriateIcon(to task:String)->String{
         let taskArray = task.lowercased().split(separator: " ")
-        
         for taskname in taskArray{
-            
-            switch taskname{
-            case "study":
-                return "study"
-            case "game":
-                return "game"
-            case "cricket":
-                return "cricket"
-            case "football":
-                return "football"
-            case "hiking":
-                return "hiking"
-            case "jogging":
-                return "jogging"
-            case "badminton":
-                return "badminton"
-            case "meeting":
-                return "meeting"
-            case "coding":
-                return "coding"
-            case "music":
-                return "music"
-            case "gym":
-                return "gym"
-            default:
-                continue
+            if let enumCase = Tasks(rawValue: String(taskname)) {
+                return enumCase.rawValue
             }
         }
-        
         return "task"
     }
 }
