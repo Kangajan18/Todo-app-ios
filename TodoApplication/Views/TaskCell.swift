@@ -19,7 +19,6 @@ class TaskCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         
         taskBubble.layer.cornerRadius = taskBubble.frame.size.height / 10
         dateBubble.layer.cornerRadius = dateBubble.frame.size.height / 15
@@ -28,8 +27,5 @@ class TaskCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
-    
 }
