@@ -68,8 +68,6 @@ class ViewController: UIViewController{
                 self.saveTask()
             }
         }
-        
-        
         taskTextField.text = ""
     }
     
@@ -97,17 +95,11 @@ class ViewController: UIViewController{
         view.endEditing(true)
     }
     
-    
     @IBAction func sortButtonPressed(_ sender: UIButton) {
         isSort = !isSort
         setEditing(isSort, animated: true)
     }
-    
-    
     func setCurrentDateAndTime(){
         date = datePicker.date
     }
-    
-    
-    
 }
