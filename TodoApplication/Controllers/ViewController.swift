@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ViewController: UIViewController{
     
@@ -19,7 +20,9 @@ class ViewController: UIViewController{
     var date:Date?
     var currentTask:String?
     var isSort = false
-    var taskArray:[TaskModel] = []
+    var taskArray:[TaskEntity] = []
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     let defaults = UserDefaults.standard
     
@@ -38,11 +41,8 @@ class ViewController: UIViewController{
         self.taskTableView.reloadData()
         
         navigationItem.hidesBackButton = true
-        
-        if let data = UserDefaults.standard.object(forKey: "TodoList") as? Data,
-           let items = try? JSONDecoder().decode([TaskModel].self, from: data) {
-            taskArray = items
-        }
+        //load data
+        loadTasks()
         
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(ViewController.longPress(longPressGestureRecognizer:)))
         self.view.addGestureRecognizer(longPressRecognizer)
@@ -55,17 +55,41 @@ class ViewController: UIViewController{
         
         if currentTask != nil && date != nil{
             DispatchQueue.main.async {
-                let newTask = TaskModel(taskId: (self.taskArray.count), dateTime: self.date!,task: self.currentTask!, isDone: false)
+                
+                let newTask = TaskEntity(context: self.context)
+                
+                newTask.taskId = Int32(self.taskArray.count)
+                newTask.task = self.currentTask
+                newTask.dateTime = self.date
+                newTask.isDone = false
+                
                 self.taskArray.append(newTask)
-                if let encoded = try? JSONEncoder().encode(self.taskArray) {
-                    self.defaults.set(encoded, forKey: "TodoList")
-                }
-                self.taskTableView.reloadData()
+                
+                self.saveTask()
             }
         }
         
         
         taskTextField.text = ""
+    }
+    
+    func saveTask() {
+        do{
+            try context.save()
+        } catch {
+            print("Error while save Date ,\(error)")
+        }
+        taskTableView.reloadData()
+    }
+    
+    func loadTasks() {
+        let request : NSFetchRequest<TaskEntity> = TaskEntity.fetchRequest()
+
+        do {
+            taskArray = try context.fetch(request)
+        } catch {
+            print("Error fetching data form context \(error)")
+        }
     }
     
     @IBAction func datepickerValueChanged(_ sender: UIDatePicker) {
