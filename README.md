@@ -12,7 +12,7 @@
   <li>Uikit used by in StoryBoard</li>
   <li>Ai tecnology for task icon selection</li>
   <li>Easy task Update feature</li>
-  <li>used Local Storage to store tasks</li>
+  <li>used Core Data to store tasks</li>
 </ul>
  
   
