@@ -49,8 +49,8 @@ extension ViewController:UITableViewDataSource {
         
         let task = taskArray[indexPath.row]
         cell.taskLabel.text = task.task
-        cell.dateLabel.text = getFormattedDate(date: task.dateTime, format: "MMM d, h:mm a")
-        cell.taskImage.image = UIImage(imageLiteralResourceName: getApopriateIcon(to: task.task))
+        cell.dateLabel.text = getFormattedDate(date: task.dateTime!, format: "MMM d, h:mm a")
+        cell.taskImage.image = UIImage(imageLiteralResourceName: getApopriateIcon(to: task.task!))
         cell.taskBubble.backgroundColor = task.isDone == true ? .systemGreen : UIColor(named: "screen1SecondaryColor")
         return cell
     }
@@ -67,10 +67,9 @@ extension ViewController:UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
+            context.delete(taskArray[indexPath.row])
             taskArray.remove(at: indexPath.row)
-            if let encoded = try? JSONEncoder().encode(self.taskArray) {
-                self.defaults.set(encoded, forKey: "TodoList")
-            }
+            self.saveTask()
             tableView.reloadData()
         }
     }
@@ -111,14 +110,12 @@ extension ViewController:UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         taskArray[indexPath.row].isDone = !taskArray[indexPath.row].isDone
-        if let encoded = try? JSONEncoder().encode(self.taskArray) {
-            self.defaults.set(encoded, forKey: "TodoList")
-        }
         taskTableView.reloadData()
+        self.saveTask()
     }
 }
 
-//MARK: - long press gesture
+//MARK: - long press gesture(update)
 extension ViewController{
     @objc func longPress(longPressGestureRecognizer: UILongPressGestureRecognizer) {
         
@@ -135,6 +132,7 @@ extension ViewController{
                     if let taskItem = textField.text{
                         taskArray[indexPath.row].task = taskItem
                         taskTableView.reloadData()
+                        saveTask()
                     }
                 }
                 
