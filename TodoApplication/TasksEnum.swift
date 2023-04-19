@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Tasks:String {
+enum Tasks:String,CaseIterable {
     case study = "study"
     case game = "game"
     case cricket = "cricket"
