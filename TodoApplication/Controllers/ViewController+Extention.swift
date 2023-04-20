@@ -32,6 +32,9 @@ extension ViewController:UITextFieldDelegate{
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.addButtonPressed(nil)
+        DispatchQueue.main.async {
+            self.taskTextField.resignFirstResponder()
+        }
         return true
     }
 }

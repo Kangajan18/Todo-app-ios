@@ -10,10 +10,12 @@ import CoreData
 
 class ViewController: UIViewController{
     
+    //define uiElements
     @IBOutlet weak var taskTextField: UITextField!
     @IBOutlet weak var taskTableView: UITableView!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     //get TaskBrain referance
     let dateFormatter = DateFormatter()
@@ -32,6 +34,7 @@ class ViewController: UIViewController{
         taskTextField.delegate = self
         taskTableView.delegate = self
         taskTableView.dataSource = self
+        searchBar.delegate = self
         
         taskTableView.register(UINib(nibName: "TaskCell", bundle: nil), forCellReuseIdentifier: "TaskCell")
         taskTableView.isEditing = false
@@ -69,6 +72,9 @@ class ViewController: UIViewController{
             }
         }
         taskTextField.text = ""
+        DispatchQueue.main.async {
+            self.taskTextField.resignFirstResponder()
+        }
     }
     
     func saveTask() {
@@ -80,14 +86,22 @@ class ViewController: UIViewController{
         taskTableView.reloadData()
     }
     
-    func loadTasks() {
-        let request : NSFetchRequest<TaskEntity> = TaskEntity.fetchRequest()
-
+    func loadTasks(with request:NSFetchRequest<TaskEntity> = TaskEntity.fetchRequest()) {
+        
         do {
-            taskArray = try context.fetch(request)
+            if try context.fetch(request) != []{
+                taskArray = try context.fetch(request)
+            } else {
+                let noTaskPopUp = UIAlertController(title: "No Task Found", message: "Please use other works to find your task.", preferredStyle: .alert)
+                let actionButton = UIAlertAction(title: "Ok", style: .default)
+                
+                noTaskPopUp.addAction(actionButton)
+                present(noTaskPopUp, animated: true)
+            }
         } catch {
             print("Error fetching data form context \(error)")
         }
+        taskTableView.reloadData()
     }
     
     @IBAction func datepickerValueChanged(_ sender: UIDatePicker) {
@@ -101,5 +115,39 @@ class ViewController: UIViewController{
     }
     func setCurrentDateAndTime(){
         date = datePicker.date
+    }
+}
+
+//MARK: - searchBar delegate
+extension ViewController:UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text?.count == 0 {
+            loadTasks()
+            
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
+            }
+        } else {
+            searchAutomatically()
+        }
+    }
+    
+    private func searchAutomatically() {
+        
+        let request : NSFetchRequest<TaskEntity> = TaskEntity.fetchRequest()
+        
+        if let taskName = searchBar.text {
+            request.predicate = NSPredicate(format: "task CONTAINS %@", taskName.lowercased())
+        }
+        request.sortDescriptors = [NSSortDescriptor(key: "task", ascending: true)]
+        
+        loadTasks(with: request)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        DispatchQueue.main.async {
+            searchBar.resignFirstResponder()
+        }
     }
 }
