@@ -11,6 +11,7 @@
   <li>Swift gestures for delete Task(when we left swipe the specific task it's ready to remove).</li>
   <li>Uikit used by in StoryBoard</li>
   <li>Ai tecnology for task icon selection</li>
+  <li>Search bar to find Task easly and efficiently<li>
   <li>Easy task Update feature</li>
   <li>used Core Data to store tasks</li>
 </ul>
