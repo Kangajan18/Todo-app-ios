@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5A185D5B29C94A160002528C /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A185D5A29C94A160002528C /* TestViewController.swift */; };
 		5A1EB17F29F000C50085B674 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5A1EB17D29F000C50085B674 /* DataModel.xcdatamodeld */; };
+		5A1EB18329F2CE260085B674 /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1EB18229F2CE260085B674 /* CategoryTableViewController.swift */; };
 		5A3715B729D8529C00D62B71 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5A3715B629D8529C00D62B71 /* IQKeyboardManagerSwift */; };
 		5A68A69429C317DF005682DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A68A69329C317DF005682DD /* AppDelegate.swift */; };
 		5A68A69629C317DF005682DD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A68A69529C317DF005682DD /* SceneDelegate.swift */; };
@@ -26,6 +27,7 @@
 /* Begin PBXFileReference section */
 		5A185D5A29C94A160002528C /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		5A1EB17E29F000C50085B674 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		5A1EB18229F2CE260085B674 /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
 		5A68A69029C317DF005682DD /* TodoApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodoApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A68A69329C317DF005682DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5A68A69529C317DF005682DD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 			children = (
 				5A68A69729C317DF005682DD /* ViewController.swift */,
 				5AABB7C029E3C15300BDC31D /* ViewController+Extention.swift */,
+				5A1EB18229F2CE260085B674 /* CategoryTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -199,6 +202,7 @@
 				5AAB04EC29C74B8E007F2B60 /* Constants.swift in Sources */,
 				5AABB7C129E3C15300BDC31D /* ViewController+Extention.swift in Sources */,
 				5AABB7BF29E387F400BDC31D /* TasksEnum.swift in Sources */,
+				5A1EB18329F2CE260085B674 /* CategoryTableViewController.swift in Sources */,
 				5AE3227A29C9F4FB00676707 /* TaskCell.swift in Sources */,
 				5A68A69629C317DF005682DD /* SceneDelegate.swift in Sources */,
 			);

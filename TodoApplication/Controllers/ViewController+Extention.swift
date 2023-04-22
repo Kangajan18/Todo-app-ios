@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 
 //MARK: - UITextFieldDelegate
@@ -153,3 +154,80 @@ extension ViewController{
     }
 }
 
+//MARK: - coredata data manipulation
+extension ViewController {
+    func saveTask() {
+        do{
+            try context.save()
+        } catch {
+            print("Error while save Date ,\(error)")
+        }
+        taskTableView.reloadData()
+    }
+    
+    func loadTasks(with request:NSFetchRequest<TaskEntity> = TaskEntity.fetchRequest(),_ predicate:NSPredicate? = nil) {
+        
+        if let selectedCategoryName = selectedCategory?.name {
+            
+            let categoryPredicate = NSPredicate(format: "parentCategory.name MATCHES %@",                                selectedCategoryName)
+            
+            if let newPredicate = predicate {
+                let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate,newPredicate])
+                request.predicate = compoundPredicate
+            } else {
+                request.predicate = categoryPredicate
+            }
+            
+            do {
+                if try context.fetch(request) != []{
+                    taskArray = try context.fetch(request)
+                } else {
+                    let noTaskPopUp = UIAlertController(title: "No Task Found", message: "Please use other works to find your task.", preferredStyle: .alert)
+                    let actionButton = UIAlertAction(title: "Ok", style: .default)
+                    
+                    noTaskPopUp.addAction(actionButton)
+                    present(noTaskPopUp, animated: true)
+                }
+            } catch {
+                print("Error fetching data form context \(error)")
+            }
+        }
+    }
+}
+
+
+//MARK: - searchBar delegate
+extension ViewController:UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text?.count == 0 {
+            print("is call again?")
+            loadTasks()
+            taskTableView.reloadData()
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
+            }
+        } else {
+            searchAutomatically()
+        }
+    }
+    
+    private func searchAutomatically() {
+        
+        let request : NSFetchRequest<TaskEntity> = TaskEntity.fetchRequest()
+        var predicate:NSPredicate?
+        if let taskName = searchBar.text {
+            predicate = NSPredicate(format: "task CONTAINS %@", taskName.lowercased())
+        }
+        request.sortDescriptors = [NSSortDescriptor(key: "task", ascending: true)]
+        
+        loadTasks(with: request,predicate)
+        taskTableView.reloadData()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        DispatchQueue.main.async {
+            searchBar.resignFirstResponder()
+        }
+    }
+}
