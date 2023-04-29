@@ -13,21 +13,12 @@ import CoreData
 //MARK: - UITextFieldDelegate
 extension ViewController:UITextFieldDelegate{
     
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        if textField.text != ""{
-            return true
-        }else{
-            textField.placeholder = "Type Something"
-            return false
-        }
-    }
-    
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField.text != ""{
             currentTask = textField.text!
             textField.placeholder = "Enter Your Task here"
         }else{
-            _ = textFieldShouldEndEditing(textField)
+            textField.placeholder = "Type Your Task here"
         }
     }
     

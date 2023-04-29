@@ -93,4 +93,9 @@ class ViewController: UIViewController{
     func setCurrentDateAndTime(){
         date = datePicker.date
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print("is Woring?")
+        taskTextField.resignFirstResponder()
+    }
 }
